@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import theme from './styles/theme.jsx';
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Singup";
+import Todo from './pages/Todo/Todo';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/todo" element={<Todo />} />
         </Routes>
       </ThemeProvider>
     </div>
