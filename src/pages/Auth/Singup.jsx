@@ -1,36 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { AxiosResponse, AxiosError } from 'axios';
 import { userApi } from '../../shared/api';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isValid, setisValid] = useState(false);
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const [isValid, setIsValid] = useState(false);
 
-    const validation = (() => {
-        if (email.includes('@') && password.length >= 8) {
-            setisValid(true);
-        } else {
-            setisValid(false);
-        }
+    const validateValue = (() => {
+        if (emailRef.current.value.includes('@') && passwordRef.current.value.length >= 8) {
+            setIsValid(true);
+            return true;
+        } 
+        setIsValid(false)
+        return false
     });
 
-    useEffect(()=> {
-        validation();
-    }, [email, password])
-
-    const onSignSubmit =  async(e) => {
+  
+    const onSignUpSubmit =  async(e) => {
         e.preventDefault();
+        if (!validateValue()) return;
         try{
-            await userApi.signup(email, password);
+            await userApi.signUp(emailRef.current.value, passwordRef.current.value);
+            alert("회원가입 완료!")
             navigate('/')
         }catch (err) {
             console.log(err)
-            alert("회원가입에 실패했습니다.")
+            alert(err.response.data.message)
         }
     }
 
@@ -38,10 +36,10 @@ const Signup = () => {
         <SignupDiv>
             <p>회원가입</p>
             <form>
-                <input type="text" placeholder='이메일 형식으로 입력해주세요' value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <input type="password" placeholder='비밀번호는 8자리 이상입니다' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <input type="text" placeholder='이메일 형식으로 입력해주세요' ref={emailRef} onChange={validateValue}/>
+                <input type="password" placeholder='비밀번호는 8자리 이상입니다' ref={passwordRef} onChange={validateValue}/>
                 <div className='BtnDiv'>
-                    <button disabled={!isValid} onClick={onSignSubmit}>회원가입</button>
+                    <button disabled={!isValid} onClick={onSignUpSubmit}>회원가입</button>
                     <button onClick={() => {
                         navigate(`/`)
                     }}>취소하기</button>
