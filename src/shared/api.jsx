@@ -31,7 +31,7 @@ export const todoApi = {
     createTodo(todo){
         return api.post('/todos', {todo})
     },
-    updateTodo(id, todo,isCompleted){
+    updateTodo(id, todo, isCompleted){
         return api.put(`/todos/${id}`,{todo,isCompleted})
     },
     deleteTodo(id){
