@@ -54,6 +54,8 @@ const Login = () => {
 export default Login;
 
 const LoginDiv = styled.div`
+    margin: 0 auto;
+    width: 40vw;
     form{
             display: flex;
             flex-direction: column;

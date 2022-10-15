@@ -51,6 +51,8 @@ const Signup = () => {
 export default Signup;
 
 const SignupDiv = styled.div`
+    margin: 0 auto;
+    width: 40vw;
    form{
             display: flex;
             flex-direction: column;

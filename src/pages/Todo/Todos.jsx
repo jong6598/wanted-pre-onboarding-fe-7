@@ -45,8 +45,8 @@ const Todos = () => {
 
     const updateTodo = async (id, todo, isCompleted) => {
         try {
-            const res = await todoApi.updateTodo(id, newTodo, isCompleted);
-            let newtodo = todoList.map((x) => (x.id === id ? res.data : x));
+            const res = await todoApi.updateTodo(id, todo, isCompleted);
+            let newtodo = todoList.map((todo) => (todo.id === id ? res.data : todo));
             setTodoList(newtodo);
         } catch (err) {
             alert(err);
@@ -58,7 +58,7 @@ const Todos = () => {
         if (result) {
             try {
                 await todoApi.deleteTodo(id);
-                setTodoList(todoList.filter((x) => x.id !== id));
+                setTodoList(todoList.filter((select) => select.id !== id));
                 alert("삭제 완료!")
             } catch (err) {
                 alert(err)
@@ -116,21 +116,18 @@ const TodosDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+    width: 41vw;
+    margin: 0 auto;
     .createTodo{
         flex-direction: row;
-        margin: 1rem 30rem;
         input {
             margin-right: 0.5rem;
         }
     }
-    .logoutBtn{
-        margin: 1rem 30rem;
-    }
     .todoList{
-        margin: 1rem 30rem;
         border: 0.2rem solid black ;
         border-radius: 1rem;
         overflow: hidden;
+        margin: 3rem auto;
     }
 `
