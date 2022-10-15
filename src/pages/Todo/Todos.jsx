@@ -77,7 +77,7 @@ const Todos = () => {
             <div className='createTodo'>
                 <input
                     type="text"
-                    placeholder='이건 못 참지~'
+                    placeholder='해야할 일을 적어주세요~'
                     value={newTodo}
                     onChange={(e) => {
                         setNewTodo(e.currentTarget.value);
