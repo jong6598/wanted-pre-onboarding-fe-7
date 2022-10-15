@@ -96,6 +96,7 @@ const Todos = () => {
                 <div className='todoList'>
                     {todoList.map((todo) => (
                         <Todo 
+                            key={todo.id}
                             todo={todo}
                             deleteTodo={deleteTodo}
                             updateTodo={updateTodo}
