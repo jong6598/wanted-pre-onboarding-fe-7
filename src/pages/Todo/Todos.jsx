@@ -38,7 +38,6 @@ const Todos = () => {
                 console.log(err);
             }
             setNewTodo("");
-            //FIXME: currnetTarget.value를 빈값으로 바꿔줘야함
         }
     }
 
